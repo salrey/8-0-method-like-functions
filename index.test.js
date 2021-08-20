@@ -10,13 +10,7 @@ const {
 } = require("./index");
 
 describe("myPushFunction()", () => {
-  test("does not use the push method", () => {
-    const array = ["module", "one", "is", "finally", "over"];
-    const element = "yas";
-    const funcString = myPushFunction(array, element).toString();
-    expect(funcString.includes(".push")).toBe(false);
-  });
-
+  
   test("returns the new length of the array", () => {
     const array = ["module", "one", "is", "finally", "over"];
     const element = "yas";
@@ -40,6 +34,14 @@ describe("myPushFunction()", () => {
   test("adds multiple elements to the end of the array", () => {
     expect(myPushFunction([1, 2, 3, 4, 5], 6, 7, 8)).toBe(8);
   });
+
+  test("does not use the push method", () => {
+    const array = ["module", "one", "is", "finally", "over"];
+    const element = "yas";
+    const funcString = myPushFunction(array, element).toString();
+    expect(funcString.includes(".push")).toBe(false);
+  });
+
 });
 
 describe("myPopFunction()", () => {
@@ -83,12 +85,6 @@ describe("myIncludesFunction()", () => {
     expect(myIncludesFunction(numArr, 5)).toBe(true);
   });
 
-  test("does not use the includes method", () => {
-    const array = ["module", "one", "is", "finally", "over"];
-    const funcString = myIncludesFunction(array).toString();
-    expect(funcString.includes(".includes")).toBe(false);
-  });
-
   test("returns false if the searched for element is not in the array from the given starting index to the end of the array", () => {
     const array = ["fire", "water", "earth", "air"];
     expect(myIncludesFunction(array, "water", 2)).toBe(false);
@@ -108,6 +104,13 @@ describe("myIncludesFunction()", () => {
     expect(myIncludesFunction(numArr, 2, -2)).toBe(false);
     expect(myIncludesFunction(numArr, 2, -5)).toBe(true);
   });
+
+  test("does not use the includes method", () => {
+    const array = ["module", "one", "is", "finally", "over"];
+    const funcString = myIncludesFunction(array).toString();
+    expect(funcString.includes(".includes")).toBe(false);
+  });
+
 });
 
 describe("myIndexOfFunction()", () => {
@@ -123,12 +126,6 @@ describe("myIndexOfFunction()", () => {
 
     const numArr = [1, 2, 3, 4, 5];
     expect(myIndexOfFunction(numArr, 5)).toBe(4);
-  });
-
-  test("does not use the indexOf method", () => {
-    const array = ["module", "one", "is", "finally", "over"];
-    const funcString = myIndexOfFunction(array).toString();
-    expect(funcString.includes(".indexOf")).toBe(false);
   });
 
   test("returns -1 if the searched for element is not in the array from the given starting index to the end of the array", () => {
@@ -152,6 +149,13 @@ describe("myIndexOfFunction()", () => {
     expect(myIndexOfFunction(numArr, 2, -2)).toBe(-1);
     expect(myIndexOfFunction(numArr, 2, -5)).toBe(1);
   });
+
+  test("does not use the indexOf method", () => {
+    const array = ["module", "one", "is", "finally", "over"];
+    const funcString = myIndexOfFunction(array).toString();
+    expect(funcString.includes(".indexOf")).toBe(false);
+  });
+
 });
 
 describe("mySliceFunction()", () => {
