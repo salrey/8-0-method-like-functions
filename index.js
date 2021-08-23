@@ -103,7 +103,46 @@ function myIndexOfFunction(array, searchElement, searchIndex) {
  * @param {number} [endIdx] - an optional number representing the ending index of the extraction (non-inclusive). The endIdx can be negative.
  * @returns {Array[*]} returns a new array containing the extracted elements.
  */
-function mySliceFunction() {}
+function mySliceFunction(array, startIdx, endIdx) {
+  let extractedElements = []
+  
+  if (endIdx < 0) {
+    for (let i = startIdx; i < array.length + endIdx; i++) {
+      extractedElements[i-startIdx] = array[i]
+    }
+  } else if (startIdx < 0) {
+    if (endIdx) {
+      for (let i = array.length + startIdx; i < endIdx; i++) {
+        extractedElements[i-(array.length + startIdx)] = array[i]
+      }
+    } else {
+      for (let i = array.length + startIdx; i < array.length; i++) {
+        extractedElements[i-(array.length + startIdx)] = array[i]
+      }
+    }
+  } else if (endIdx < array.length) {
+    for (let i = startIdx; i < endIdx; i++) {
+      extractedElements[i-startIdx] = array[i]
+    }
+  } else if (startIdx) {
+    for (let i = startIdx; i < array.length; i++) {
+      extractedElements[i-startIdx] = array[i]
+    }
+  } else {
+    for (let i = 0; i < array.length; i++) {
+      extractedElements[i] = array[i]
+    }
+  }
+
+  return extractedElements
+
+}
+
+// Check 
+const array = [1, 2, 3, 4, 5]
+let startIdx = 2
+let endIdx = -1
+console.log(mySliceFunction(array, startIdx, endIdx))
 
 /**
  * Creates and returns a new string by concatenating all of the elements in an array, separated by commas or a specified separator string. If the array has only one item, then that item will be returned without using the separator. Do not use the join method.
