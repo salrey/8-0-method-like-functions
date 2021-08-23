@@ -196,29 +196,25 @@ function myReverseFunction(array) {
  * @returns {number} returns the new length of the array.
  */
 function myUnshiftFunction(array, newElement, newElement1, newElement2) {
-const newList = []
 
   for (let i = array.length -1; i >= 0; i--) {
-      array[i + arguments.length -1] = array[i]
-    }
+      array[i + arguments.length -1] = array[i];
+    };
   for (let i = 1; i < arguments.length; i++) {
-    newList[i-1] = arguments[i]
-  }
-  for (let i = 0; i < newList.length; i++) {
-    array[i] = newList[i]
-  }
+    array[i-1] = arguments[i];
+  };
   
-  const newLength = array.length
+  const newLength = array.length;
   
-  return newLength
-}
+  return newLength;
+};
 
 //check 
-const array = [1, 2, 3, 4, 5];
-let newElement = 6
-let newElement1 = 7
-let newElement2 = 8
-console.log(myUnshiftFunction(array, newElement, newElement1, newElement2))
+// const array = [1, 2, 3, 4, 5];
+// let newElement = 6
+// let newElement1 = 7
+// let newElement2 = 8
+// console.log(myUnshiftFunction(array, newElement, newElement1, newElement2))
 
 module.exports = {
   myPushFunction,
