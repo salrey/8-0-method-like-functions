@@ -30,7 +30,7 @@ describe("myPushFunction()", () => {
     expect(array[array.length - 1]).toEqual("yas");
   });
 
-  test("adds multiple elements to the end of the array", () => {
+  test.skip("adds multiple elements to the end of the array", () => {
     expect(myPushFunction([1, 2, 3, 4, 5], 6, 7, 8)).toBe(8);
   });
 
@@ -255,7 +255,7 @@ describe("myJoinFunction()", () => {
 });
 
 describe("myReverseFunction()", () => {
-  test("returns an array with the elements reversed", () => {
+  test("returns the array with the elements reversed", () => {
     const array = ["module", "one", "is", "finally", "over"];
     const expected1 = ["over", "finally", "is", "one", "module"];
     expect(myReverseFunction(array)).toEqual(expected1);
@@ -263,6 +263,11 @@ describe("myReverseFunction()", () => {
     const numArr = [1, 2, 3, 4, 5];
     const expected2 = [5, 4, 3, 2, 1];
     expect(myReverseFunction(numArr)).toEqual(expected2);
+  });
+
+  test("mutates the original array", () => {
+    const array = ["module", "one", "is", "finally", "over"];
+    expect(myReverseFunction(array)).toEqual(array);
   });
 
   test("does not use the reverse method", () => {
@@ -273,25 +278,31 @@ describe("myReverseFunction()", () => {
 });
 
 describe("myUnShiftFunction()", () => {
-  test("returns an array with the correct length", () => {
+  test("returns the new length of the array", () => {
     const array = ["module", "one", "is", "finally", "over"];
     const element = "yas";
-    expect(myUnshiftFunction(array, element).length).toEqual(6);
+    expect(myUnshiftFunction(array, element)).toEqual(6);
+  });
+
+  test("mutates the original array", () => {
+    const array = ["module", "one", "is", "finally", "over"];
+    const element = "yas";
+    myUnshiftFunction(array, element);
+    expect(array.length).toEqual(6);
   });
 
   test("adds an element to the start of the array", () => {
     const array = ["module", "one", "is", "finally", "over"];
     const element = "yas";
-    expect(myUnshiftFunction(array, element)[0]).toEqual("yas");
+    myUnshiftFunction(array, element);
+    expect(array[0]).toEqual("yas");
   });
 
-  test("adds multiple elements to the start of the array", () => {
-    const numArr = [4, 5, 6, 7, 8];
-    const expected = [1, 2, 3, 4, 5, 6, 7, 8];
-    expect(myUnshiftFunction(numArr, 1, 2, 3).length).toBe(8);
-    expect(myUnshiftFunction(numArr, 1, 2, 3)).toEqual(
-      expect.arrayContaining(expected)
-    );
+  test.skip("adds multiple elements to the start of the array", () => {
+    const numArr = [1,2,3,4,5]
+    expect(myUnshiftFunction(numArr, 6, 7, 8)).toBe(8);
+    expect(numArr).toStrictEqual([6,7,8,1,2,3,4,5]);
+
   });
 
   test("does not use the unshift method", () => {
