@@ -1,17 +1,25 @@
 /**
  * Appends an element or multiple elements to the end of an array. Do not use the push method.
  * @param {Array[]} array - an array of with any kind of elements.
+ * @param {*} element - an element of any kind.
  * @returns {number} the new length of the array.
  */
 
-function myPushFunction() {}
+function myPushFunction(array, element, element1, element2) {
+  array[array.length] = element
+  if (element1 && element2) {
+    array[array.length] = element1     
+    array[array.length] = element2 
+  }
+  return array.length
+}
 
 /**
  * Removes the last element of the array and returns the removed element or undefined if the array is empty. Do not use the pop method.
  * @param {Array[]} array - an array of with any kind of elements.
- * @returns {number} the new length of the array .
+ * @returns {*} the element that was removed.
  */
-function myPopFunction() {}
+function myPopFunction(array) {}
 
 /**
  * Determine whether an array includes a specific value within its entries. Do not use the includes method.
