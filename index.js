@@ -203,10 +203,8 @@ function myUnshiftFunction(array, newElement, newElement1, newElement2) {
   for (let i = 1; i < arguments.length; i++) {
     array[i-1] = arguments[i];
   };
-  
-  const newLength = array.length;
-  
-  return newLength;
+    
+  return array.length;
 };
 
 //check 
