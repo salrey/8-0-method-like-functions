@@ -38,7 +38,31 @@ function myPopFunction(array) {
  * @param {*} searchElement - an element of any type that you are searching for in the array.
  * @returns {boolean} returns true or false if the searchElement is found in the array.
  */
-function myIncludesFunction() {}
+function myIncludesFunction(array, searchElement, searchIndex) {
+  let result = false
+
+  if (searchIndex < 0) {
+    for (let i = array.length + searchIndex; i < array.length; i++) {
+      if (searchElement === array[i]) {
+        result = true;
+      } 
+    }
+  } else if (searchIndex) {
+    for (let i = searchIndex; i < array.length; i++) {
+      if (searchElement === array[i]) {
+        result = true;
+      } 
+    }
+  } else {
+    for (let i = 0; i < array.length; i++) {
+      if (searchElement === array[i]) {
+        result = true;
+      } 
+    }
+  }
+
+  return result 
+}
 
 /**
  * Return the first index in an array where a specified value is found. Do not use the indexOf method.
