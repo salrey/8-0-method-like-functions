@@ -19,7 +19,18 @@ function myPushFunction(array, element, element1, element2) {
  * @param {Array[]} array - an array of with any kind of elements.
  * @returns {*} the element that was removed.
  */
-function myPopFunction(array) {}
+function myPopFunction(array) {
+  if (array.length === 0) {
+    return undefined
+  }
+  let lastElement = array[array.length-1] 
+  array.length = array.length - 1
+  return lastElement 
+}
+
+// //Check
+// const array = [1, 2, 3, 4]
+// console.log(myPopFunction(array))
 
 /**
  * Determine whether an array includes a specific value within its entries. Do not use the includes method.
