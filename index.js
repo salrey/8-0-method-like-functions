@@ -57,7 +57,7 @@ function myReverseFunction() {}
  * Returns an array with one or more elements added to the front of the array followed by the original elements. Do not use the unshift method.
  * @param {Array[*]} array - an array of with any kind of elements.
  * @param {*} newElement - an element of any type to add to the front of the array.
- * @returns {Array[*]} returns the array with the newElement added to the front of the array followed by the original elements.
+ * @returns {number} returns the new length of the array.
  */
 function myUnshiftFunction() {}
 
