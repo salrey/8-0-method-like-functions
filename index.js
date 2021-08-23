@@ -70,7 +70,31 @@ function myIncludesFunction(array, searchElement, searchIndex) {
  * @param {*} searchElement - an element of any type that you are searching for in the array.
  * @returns {number} returns the index at with the searchElement is found or -1.
  */
-function myIndexOfFunction() {}
+function myIndexOfFunction(array, searchElement, searchIndex) {
+  let result = -1
+
+  if (searchIndex < 0) {
+    for (let i = array.length + searchIndex; i < array.length; i++) {
+      if (searchElement === array[i]) {
+        result = i;
+      } 
+    }
+  } else if (searchIndex) {
+    for (let i = searchIndex; i < array.length; i++) {
+      if (searchElement === array[i]) {
+        result = i;
+      } 
+    }
+  } else {
+    for (let i = 0; i < array.length; i++) {
+      if (searchElement === array[i]) {
+        result = i;
+      } 
+    }
+  }
+
+  return result
+}
 
 /**
  * Returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included) where start and end represent the index of items in that array. The original array will not be modified. Do not use the slice method.
