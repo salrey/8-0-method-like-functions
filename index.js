@@ -151,29 +151,43 @@ function mySliceFunction(array, startIdx, endIdx) {
  * @returns {string} returns a new array containing the extracted elements
  */
 function myJoinFunction(array, separator) { 
-  if (separator === undefined) separator = ",";
-  let newList = ""
+  if (separator === undefined) {
+    separator = ",";
+  }; 
+
+  let newList = "";
 
   for (let i = 0; i < array.length; i++) {
-    newList += array[i] 
-    if (array.length > 1) {
-      if (i === array.length -1) {
-        newList
-      } else {
-        newList += separator
-      }
-    }
-  }
+    newList += array[i]; 
+    if (array.length > 1 && i < array.length -1) {
+      newList += separator;
+    }; 
+  };
   
   return newList;
-}
+};
 
 /**
  * Returns an array with the elements reverse. The first array element becomes the last, and the last array element becomes the first. Do not use the reverse method.
  * @param {Array[*]} array - an array of with any kind of elements
  * @returns {Array[*]} returns the array with the elements reversed.
  */
-function myReverseFunction() {}
+function myReverseFunction(array) {
+  const newList = [];
+
+  for (let i = 0; i < array.length; i++) {
+    newList[i] = array[i]; 
+  };
+  for (let i = array.length - 1; i >= 0; i--) {
+    array[(array.length - 1) - i] = newList[i];
+  };
+
+  return array;
+};
+
+// Checkx
+// const array = [1, 2, 3, 4, 5];
+// console.log(myReverseFunction(array))
 
 /**
  * Returns an array with one or more elements added to the front of the array followed by the original elements. Do not use the unshift method.
