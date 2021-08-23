@@ -49,9 +49,7 @@ function myJoinFunction() {}
 /**
  * Returns an array with the elements reverse. The first array element becomes the last, and the last array element becomes the first. Do not use the reverse method.
  * @param {Array[*]} array - an array of with any kind of elements
- * @returns {Array[*]} returns a new array with the elements reversed.
- * 
- * FULL DISCLOSURE: this 'reverse method function' was modified for the purpose of this exercise. The actual method behaves differently. Learn more: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse
+ * @returns {Array[*]} returns the array with the elements reversed.
  */
 function myReverseFunction() {}
 
@@ -59,9 +57,7 @@ function myReverseFunction() {}
  * Returns an array with one or more elements added to the front of the array followed by the original elements. Do not use the unshift method.
  * @param {Array[*]} array - an array of with any kind of elements.
  * @param {*} newElement - an element of any type to add to the front of the array.
- * @returns {Array[*]} returns a new array with the newElement added to the front of the array followed by the original elements.
- * 
- * FULL DISCLOSURE: this 'unshift method function' was modified for the purpose of this exercise. The actual method behaves differently. Learn more: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift
+ * @returns {Array[*]} returns the array with the newElement added to the front of the array followed by the original elements.
  */
 function myUnshiftFunction() {}
 

@@ -372,10 +372,10 @@ describe("myJoinFunction()", () => {
 });
 
 describe("myReverseFunction()", () => {
-  test("returns an array with the elements reversed", () => {
+  test("returns the array with the elements reversed", () => {
     const array1 = ["module", "one", "is", "finally", "over"];
-    const actual1 = myReverseFunction(array1);
     const expected1 = ["over", "finally", "is", "one", "module"];
+    const actual1 = myReverseFunction(array1);
     expect(actual1).toEqual(expected1);
 
     const array2 = [1, 2, 3, 4, 5];
@@ -396,6 +396,11 @@ describe("myReverseFunction()", () => {
     expect(array2).toEqual(expected2);
   });
 
+  test("mutates the original array", () => {
+    const array = ["module", "one", "is", "finally", "over"];
+    expect(myReverseFunction(array)).toEqual(array);
+  });
+
   test("does not use the reverse method", () => {
     const array = ["module", "one", "is", "finally", "over"];
     const funcString = myReverseFunction.toString();
@@ -403,29 +408,31 @@ describe("myReverseFunction()", () => {
   });
 });
 
-describe.only("myUnShiftFunction()", () => {
-  test("adds an element to the start of the array", () => {
-    const array1 = ["module", "one", "is", "finally", "over"];
-    myUnshiftFunction(array1, "omg");
-    const expected1 = ["omg", "module", "one", "is", "finally", "over"];
-    expect(array1).toEqual(expected1);
-
-    const array2 = [1, 2, 3, 5, 8, 13];
-    myUnshiftFunction(array2, 1);
-    const expected2 = [1, 1, 2, 3, 5, 8, 13];
-    expect(array2).toEqual(expected2);
+describe("myUnShiftFunction()", () => {
+  test("returns the new length of the array", () => {
+    const array = ["module", "one", "is", "finally", "over"];
+    const element = "yas";
+    expect(myUnshiftFunction(array, element)).toEqual(6);
   });
 
-  test("returns the new array's length", () => {
-    const array1 = ["module", "one", "is", "finally", "over"];
-    const actual1 = myUnshiftFunction(array1, "yas");
-    const expected1 = 6;
-    expect(actual1).toEqual(expected1);
+  test("mutates the original array", () => {
+    const array = ["module", "one", "is", "finally", "over"];
+    const element = "yas";
+    myUnshiftFunction(array, element);
+    expect(array.length).toEqual(6);
+  });
 
-    const array2 = ["I've", "got", "to", "celebrate", "you", "baby"];
-    const actual2 = myUnshiftFunction(array2, "oh");
-    const expected2 = 7;
-    expect(actual2).toEqual(expected2);
+  test("adds an element to the start of the array", () => {
+    const array = ["module", "one", "is", "finally", "over"];
+    const element = "yas";
+    myUnshiftFunction(array, element);
+    expect(array[0]).toEqual("yas");
+  });
+
+  test.skip("adds multiple elements to the start of the array", () => {
+    const numArr = [1, 2, 3, 4, 5];
+    expect(myUnshiftFunction(numArr, 6, 7, 8)).toBe(8);
+    expect(numArr).toStrictEqual([6, 7, 8, 1, 2, 3, 4, 5]);
   });
 
   test("does not use the unshift method", () => {
