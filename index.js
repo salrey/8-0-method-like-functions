@@ -5,12 +5,21 @@
  * @returns {number} the new length of the array.
  */
 
-function myPushFunction(array, element, element1, element2) {
-  array[array.length] = element;
-  if (element1 && element2) {
-    array[array.length] = element1;     
-    array[array.length] = element2; 
-  };
+//NOTES
+//In order to grab remaining arguments after array parameter
+//Use the REST operator 
+// function myPushFunction(array, ...elements) {
+  // Then to access elements, loop 
+  // for(const element of elements)
+// OR const elements = Array.from(arguments).slice(1)
+// Note that arguments will console.log out as object with a key for each parameter
+// That's why we do Array.from(arguments)
+
+function myPushFunction(array, ...elements) {
+  for (const element of elements) {
+    array[array.length] = element;
+  }
+  
   return array.length;
 };
 
@@ -24,7 +33,7 @@ function myPopFunction(array) {
     return undefined;
   };
   const lastElement = array[array.length-1] 
-  array.length = array.length - 1;
+  array.length--;
   return lastElement; 
 };
 
@@ -38,28 +47,29 @@ function myPopFunction(array) {
  * @param {*} searchElement - an element of any type that you are searching for in the array.
  * @returns {boolean} returns true or false if the searchElement is found in the array.
  */
-function myIncludesFunction(array, searchElement, searchIndex) {
+
+// NOTES
+// Rather than have another if statement to check when startIdx doesn't exist
+// set the parameter startIdx to equal to 0 in the function or set defaults in function
+// function myIncludesFunction(array = [], searchElement = 3, startIdx = 0) {
+// OR use short circuiting to set default parameter value to zero
+  // If startIdx is negative, change the parameter in an if statement 
+
+function myIncludesFunction(array, searchElement, startIdx) {
   let result = false;
 
-  if (searchIndex < 0) {
-    for (let i = array.length + searchIndex; i < array.length; i++) {
-      if (searchElement === array[i]) {
-        result = true;
-      }; 
-    };
-  } else if (searchIndex) {
-    for (let i = searchIndex; i < array.length; i++) {
-      if (searchElement === array[i]) {
-        result = true;
-      }; 
-    };
-  } else {
-    for (let i = 0; i < array.length; i++) {
-      if (searchElement === array[i]) {
-        result = true;
-      }; 
-    };
+  startIdx = startIdx || 0
+
+  if (startIdx < 0) {
+    startIdx = array.length + startIdx;
+  } 
+  
+  for (let i = startIdx; i < array.length; i++) {
+    if (searchElement === array[i]) {
+      result = true;
+    }; 
   };
+  
 
   return result; 
 };
@@ -70,27 +80,19 @@ function myIncludesFunction(array, searchElement, searchIndex) {
  * @param {*} searchElement - an element of any type that you are searching for in the array.
  * @returns {number} returns the index at with the searchElement is found or -1.
  */
-function myIndexOfFunction(array, searchElement, searchIndex) {
+function myIndexOfFunction(array, searchElement, startIdx) {
   let result = -1;
 
-  if (searchIndex < 0) {
-    for (let i = array.length + searchIndex; i < array.length; i++) {
-      if (searchElement === array[i]) {
-        result = i;
-      }; 
-    };
-  } else if (searchIndex) {
-    for (let i = searchIndex; i < array.length; i++) {
-      if (searchElement === array[i]) {
-        result = i;
-      }; 
-    };
-  } else {
-    for (let i = 0; i < array.length; i++) {
-      if (searchElement === array[i]) {
-        result = i;
-      }; 
-    };
+  startIdx = startIdx || 0
+
+  if (startIdx < 0) {
+    startIdx = array.length + startIdx;
+  } 
+  
+  for (let i = startIdx; i < array.length; i++) {
+    if (searchElement === array[i]) {
+      result = i;
+    }; 
   };
 
   return result;
@@ -105,34 +107,22 @@ function myIndexOfFunction(array, searchElement, searchIndex) {
  */
 function mySliceFunction(array, startIdx, endIdx) {
   const extractedElements = [];
+
+  startIdx = startIdx || 0
+  if (startIdx < 0) {
+    startIdx = array.length + startIdx
+  }
   
+  endIdx = endIdx || array.length
   if (endIdx < 0) {
-    for (let i = startIdx; i < array.length + endIdx; i++) {
-      extractedElements[i-startIdx] = array[i];
-    };
-  } else if (startIdx < 0) {
-    if (endIdx) {
-      for (let i = array.length + startIdx; i < endIdx; i++) {
-        extractedElements[i-(array.length + startIdx)] = array[i];
-      };
-    } else {
-      for (let i = array.length + startIdx; i < array.length; i++) {
-        extractedElements[i-(array.length + startIdx)] = array[i];
-      };
-    };
-  } else if (endIdx < array.length) {
-    for (let i = startIdx; i < endIdx; i++) {
-      extractedElements[i-startIdx] = array[i];
-    };
-  } else if (startIdx) {
-    for (let i = startIdx; i < array.length; i++) {
-      extractedElements[i-startIdx] = array[i];
-    };
-  } else {
-    for (let i = 0; i < array.length; i++) {
-      extractedElements[i] = array[i];
-    };
-  };
+    endIdx = array.length + endIdx
+  } else if (endIdx > array.length) {
+    endIdx = array.length
+  }
+
+  for (let i = startIdx; i < endIdx; i++) {
+    extractedElements[extractedElements.length] = array[i];
+  }
 
   return extractedElements;
 
@@ -150,10 +140,7 @@ function mySliceFunction(array, startIdx, endIdx) {
  * @param {string} [separator] - an optional string to separate each pair of adjacent elements of the array. If no separator is specific the default separator should be a comma (",")
  * @returns {string} returns a new array containing the extracted elements
  */
-function myJoinFunction(array, separator) { 
-  if (separator === undefined) {
-    separator = ",";
-  }; 
+function myJoinFunction(array, separator = ",") { 
 
   let newList = "";
 
@@ -172,6 +159,13 @@ function myJoinFunction(array, separator) {
  * @param {Array[*]} array - an array of with any kind of elements
  * @returns {Array[*]} returns the array with the elements reversed.
  */
+
+// NOTES
+//You can use .slice to create a copy of an array and then reverse
+//const reversed = arr.slice().reversed()
+// Also use temp method, where you're setting a variable for each element
+// const temp = array[i]
+
 function myReverseFunction(array) {
   const newList = [];
 
